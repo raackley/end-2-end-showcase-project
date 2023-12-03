@@ -30,7 +30,7 @@ app = Flask(__name__)
 
 @app.route("/monthly_view_count/<string:article>/<int:year>/<int:month>", methods=["GET"])
 def monthly_view_count(article, year, month):
-    return get_monthly_pageview_count(article, year, month)
+    return get_monthly_pageview_count(article, year, str(month).zfill(2))
 
 #  main thread of execution to start the server
 if __name__ == '__main__':
