@@ -16,6 +16,8 @@ Setup and use venv
 
 `$ source venv/bin/activate`
 
+`$ cd src`
+
 Install python requirements.
 
 `$ python -m pip install -r requirements.txt`
