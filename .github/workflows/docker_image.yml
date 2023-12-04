@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
       - '*'
 
 jobs:
@@ -25,7 +27,7 @@ jobs:
         if [[ $GITHUB_REF == refs/heads/master ]]; then
           export DOCKER_TAG=latest
         else
-          export DOCKER_TAG=pr-${{ github.event.number }}
+          export DOCKER_TAG=pr-${{ github.event.pull_request.number }}
         fi
         echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
 
