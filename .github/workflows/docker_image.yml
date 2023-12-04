@@ -27,6 +27,7 @@ jobs:
         else
           export DOCKER_TAG=pr-${{ github.event.pull_request.number }}
         fi
+        echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
 
     - name: Build Docker Image
       run: docker build -t raackley/gt-assignment:$DOCKER_TAG .
