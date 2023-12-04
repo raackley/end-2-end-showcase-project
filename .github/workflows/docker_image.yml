@@ -25,7 +25,7 @@ jobs:
         if [[ $GITHUB_REF == refs/heads/master ]]; then
           export DOCKER_TAG=latest
         else
-          export DOCKER_TAG=pr-${{ github.event.pull_request.number || github.event.issue.number }}
+          export DOCKER_TAG=pr-${{ github.event.number }}
         fi
         echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
 
