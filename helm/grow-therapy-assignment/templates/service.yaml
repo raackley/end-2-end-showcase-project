@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "grow-therapy-assignment.fullname" . }}
+  labels:
+    {{- include "grow-therapy-assignment.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "grow-therapy-assignment.selectorLabels" . | nindent 4 }}
