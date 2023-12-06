@@ -40,7 +40,8 @@ def query_wikipedia_api(article, query_start_date, query_end_date):
     base_url = 'https://wikimedia.org/api/rest_v1/'
     api_query = 'metrics/pageviews/per-article/'
     static_options = 'en.wikipedia/all-access/all-agents/'
-    user_options = '{0}/monthly/{1}/{2}'.format(article, query_start_date, query_end_date)
+    user_options = '{0}/monthly/{1}/{2}'.format(article, query_start_date,
+                                                query_end_date)
 
     # api-endpoint
     full_url = base_url + api_query + static_options + user_options
