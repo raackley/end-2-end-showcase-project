@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flasgger import Swagger, swag_from
 from datetime import date
 import requests
 
@@ -57,10 +58,12 @@ def query_wikipedia_api(article, query_start_date, query_end_date):
 
 # initialize our Flask application
 app = Flask(__name__)
+swagger = Swagger(app)
 
 
 @app.route("/monthly_view_count/<string:article>/<int:year>/<int:month>",
            methods=["GET"])
+@swag_from('monthly_view_count.yml')
 def monthly_view_count(article, year, month):
     result, http_code = get_monthly_pageview_count(article, year,
                                                    str(month).zfill(2))
@@ -68,6 +71,7 @@ def monthly_view_count(article, year, month):
 
 
 @app.route("/health", methods=["GET"])
+@swag_from('health.yml')
 def health():
     return jsonify("healthy")
 

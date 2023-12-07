@@ -83,3 +83,11 @@ To override any of the variables in the `values.yaml`, you can install/upgrade l
 The app is running in "Production" using the CI build in GitHub, and the Helm chart to deploy to a Kubernetes cluster.  The "production" app can be found at `https://gta.ryanackley.com/`.  It is deployed in a High Availability configuration, with SSL, and behind a CDN with DDoS protection.  It can be used simlarly to the local version, like so.
 
 `$ curl https://gta.ryanackley.com/monthly_view_count/<article name>/<year NNNN>/<month NN>`
+
+## Swagger API Documentation
+
+To view the Swagger API documentation, connect to the `/apidocs` endpoint.
+
+Example for dev: [http://127.0.0.1:5000/apidocs/](http://127.0.0.1:5000/apidocs/)
+
+Production: [https://gta.ryanackley.com/apidocs/](https://gta.ryanackley.com/apidocs/)
