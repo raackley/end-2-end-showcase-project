@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from datetime import date
 import requests
 
@@ -62,12 +62,13 @@ app = Flask(__name__)
 @app.route("/monthly_view_count/<string:article>/<int:year>/<int:month>",
            methods=["GET"])
 def monthly_view_count(article, year, month):
-    return get_monthly_pageview_count(article, year, str(month).zfill(2))
+    result, http_code = get_monthly_pageview_count(article, year, str(month).zfill(2))
+    return jsonify(result), http_code
 
 
 @app.route("/health", methods=["GET"])
 def health():
-    return "healthy"
+    return jsonify("healthy")
 
 
 #  main thread of execution to start the server
