@@ -2,7 +2,7 @@
 
 ## Assignment
 
-This is the take home assignment for Grow Therapy.  The minimum requirements were to:
+This is the take home assignment for Grow Therapy, for Ryan Ackley.  The minimum requirements were to:
 
 - [x] Create backend web application that exposes an endpoint to return a given Wikipedia article's page views for a given month.
 - [x] App containerized with Docker
