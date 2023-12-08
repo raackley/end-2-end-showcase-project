@@ -1,5 +1,22 @@
 # grow-therapy-assignment
 
+## Overview
+
+This is the take home assignment for Grow Therapy.  The minimum requirements were to:
+
+- [x] Create backend web application that exposes an endpoint to return a given Wikipedia article's page views for a given month.
+- [x] App containerized with Docker
+
+Extended requirements:
+
+- [x] Add README
+- [x] Document API endpoint
+- [x] Write tests for the application
+- [x] Make it easy for the team to build and run locally
+- [x] Utilize best practices for containerization and Docker
+- [x] Handle corner cases
+- [x] Handle performance, security, and reliability concerns for production
+
 ## Run
 
 Works with python3, so make sure it is installed first.  Clone the code repository, install the requirements, and run the server.
