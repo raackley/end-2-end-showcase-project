@@ -94,7 +94,7 @@ Production: [https://gta.ryanackley.com/apidocs/](https://gta.ryanackley.com/api
 
 ## API tests with pytest
 
-There are API tests for the project in `tests/`.  To run them, perform the following in your venv as setup above.
+There are API tests for the project in `tests/`.  These tests run automatically in GitHub for each Pull Request.  To run them locally, perform the following in your venv as setup above.
 
 From the root directory.
 
