@@ -91,3 +91,13 @@ To view the Swagger API documentation, connect to the `/apidocs` endpoint.
 Example for dev: [http://127.0.0.1:5000/apidocs/](http://127.0.0.1:5000/apidocs/)
 
 Production: [https://gta.ryanackley.com/apidocs/](https://gta.ryanackley.com/apidocs/)
+
+## API tests with pytest
+
+There are API tests for the project in `tests/`.  To run them, perform the following in your venv as setup above.
+
+From the root directory.
+
+`$ pip install -r tests/requirements.txt`
+
+`$ pytest`
