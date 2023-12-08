@@ -13,7 +13,7 @@ def get_monthly_pageview_count(article, year, month):
         # formatted with "01" suffix to make it directly comparable
         today_formatted = today.strftime("%Y%m01")
 
-        # validate user input
+        # validate user input for corner cases and invalid requests
         # any string should be allowed as a potential article
         if not isinstance(article, str):
             return "error, article must be a string", 400
