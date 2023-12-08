@@ -23,9 +23,13 @@ Works with python3, so make sure it is installed first.  Clone the code reposito
 
 Clone repo and change directory.
 
-```$ git clone git@github.com:raackley/grow-therapy-assignment.git```
+```
+$ git clone git@github.com:raackley/grow-therapy-assignment.git
+```
 
-```$ cd grow-therapy-assignment```
+```
+$ cd grow-therapy-assignment
+```
 
 Setup and use venv
 
