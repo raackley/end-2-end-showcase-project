@@ -1,24 +1,17 @@
-# grow-therapy-assignment
+# end-2-end-showcase-project
 
-## Assignment
+## Project Goals
 
-This is the take home assignment for Grow Therapy, for Ryan Ackley.  The minimum requirements were to:
+This is a hypothetical project just to showcase development and deployment end to end of a simple web application, with all the bells and whistles.  It is called, the "End to End Showcase Project", or E2ESP in short.  All code written by myself, [Ryan Ackley](mailto:ryan@ryanackley.com).  This project demonstrates the following requirements:
 
 - [x] Create backend web application that exposes an endpoint to return a given Wikipedia article's page views for a given month.
 - [x] App containerized with Docker
-
-Extended requirements:
-
-- [x] Add README
 - [x] Document API endpoint
 - [x] Write tests for the application
-- [x] Make it easy for the team to build and run locally
+- [x] Make it easy for a team to build and run locally
 - [x] Utilize best practices for containerization and Docker
 - [x] Handle corner cases
 - [x] Handle performance, security, and reliability concerns for production
-
-Above and beyond:
-
 - [x] Add CI/CD tests and container builds for GitHub Pull Requests
 - [x] Build images from Pull Request branches and `master` branch commits to Docker Hub
 - [x] Include Helm chart for easy Kubernetes deployments
@@ -31,7 +24,7 @@ The following sections will document this application generally, but also point 
 
 This project contains a Python Flask web application.  It exposes 3 endpoints.
 
-The first endpoint that is exposed is `/monthly_view_count/` which will return the page view count of a given Wikipedia article for a given month.  It takes 3 parameters, first is the article name, second is the year, and the third is the month in digit format (e.g. using 02 for February).  The parameters are supplied as part of the path in this format `/monthly_view_count/<article name>/<year NNNN>/<month NN>`.  This meets the primary goal of the assignment.
+The first endpoint that is exposed is `/monthly_view_count/` which will return the page view count of a given Wikipedia article for a given month.  It takes 3 parameters, first is the article name, second is the year, and the third is the month in digit format (e.g. using 02 for February).  The parameters are supplied as part of the path in this format `/monthly_view_count/<article name>/<year NNNN>/<month NN>`.  This meets the primary goal of the project.
 
 The second endpoint is `/health`.  This is a basic healthcheck that just returns http 200 and "healthy".  This can be used as part of a deployment to a Kubernetes cluster as a liveness or readiness probe.  Included in this project is a Helm chart that does make use of the endpoint in this way.  This enables high availability (production concern) by providing a mechanism for a Pod to fail in a cluster, in which Kubernetes would automatically reschedule a new replacement Pod.  That combined with running at least 2 replicas on the cluster will ensure that there is zero downtime in the even of a Pod failure, a node failure, or even a regular deploy of new code.
 
@@ -39,16 +32,16 @@ The third endpoint is `/apidocs`.  This endpoint exposes the API documentation w
 
 ## Run Locally
 
-The app requires python3, so make sure it is installed first.  Clone the code repository, install the requirements, and run the server.  Running in this way is the easiest and the faster for a developer to iterate on code changes, which meets the requirement for easy build and running for the team.
+The app requires python3, so make sure it is installed first.  Clone the code repository, install the requirements, and run the server.  Running in this way is the easiest and faster for a developer to iterate on code changes, which meets the requirement for easy build and running for team collaboration.
 
 Clone repo and change directory.
 
 ```
-git clone git@github.com:raackley/grow-therapy-assignment.git
+git clone git@github.com:raackley/end-2-end-showcase-project.git
 ```
 
 ```
-cd grow-therapy-assignment
+cd end-2-end-showcase-project
 ```
 
 Setup and use venv
@@ -102,13 +95,13 @@ The project includes a Dockerfile to build an image and then to run a container 
 To build and run a Docker image locally, run the following from the root repo directory.
 
 ```
-docker build -t grow-therapy-assignment .
+docker build -t end-2-end-showcase-project .
 ```
 
 Then run it locally like so.
 
 ```
-docker run -p 8000:8000 grow-therapy-assignment
+docker run -p 8000:8000 end-2-end-showcase-project
 ```
 
 Connect via localhost.
@@ -119,18 +112,18 @@ curl http://127.0.0.1:8000/monthly_view_count/<article name>/<year NNNN>/<month 
 
 ### Build from CI
 
-This repo builds an image for each Pull Request, and it also builds an image for each merge to the `master` branch.  Each of these are pushed to `raackley/gt-assignment` on [Docker Hub](https://hub.docker.com/repository/docker/raackley/gt-assignment).  Each `master` branch will update the `latest` tag, and each Pull Request will update the tag named `pr-<pr number>` where "pr-number" is your Pull Request number.
+This repo builds an image for each Pull Request, and it also builds an image for each merge to the `master` branch.  Each of these images are pushed to `raackley/e2esp` on [Docker Hub](https://hub.docker.com/repository/docker/raackley/e2esp).  Each `master` branch will update the `latest` tag, and each Pull Request will update the tag named `pr-<pr number>` where "pr-number" is your Pull Request number.
 
 For example, if your Pull Request number is `3`, then you can run the latest build of your branch like so.
 
 ```
-docker run -p 8000:8000 raackley/gt-assignment:pr-3
+docker run -p 8000:8000 raackley/e2esp:pr-3
 ```
 
 Similarly, if you want to run the latest version of the `master` branch, run the following.
 
 ```
-docker run -p 8000:8000 raackley/gt-assignment:latest
+docker run -p 8000:8000 raackley/e2esp:latest
 ```
 
 ## Deploy to a Kubernetes cluster with Helm
@@ -140,21 +133,21 @@ You can easily deploy the latest version of this application using the included 
 To install with default values, you can install it with the following command.
 
 ```
-helm -n <namespace> upgrade -i gt-assignment helm/grow-therapy-assignment --create-namespace
+helm -n <namespace> upgrade -i e2esp helm/e2esp --create-namespace
 ```
 
 To override any of the variables in the `values.yaml`, you can install/upgrade like the following.  This example enables and configures the Ingress resource.
 
 ```
-helm -n gt-assignment upgrade -i gt-assignment helm/grow-therapy-assignment --create-namespace --set ingress.enabled=true,ingress.hosts[0].host=gta.ryanackley.com,ingress.hosts[0].paths[0].path=/,ingress.hosts[0].paths[0].pathType=ImplementationSpecific
+helm -n e2esp upgrade -i e2esp helm/e2esp --create-namespace --set ingress.enabled=true,ingress.hosts[0].host=e2esp.ryanackley.com,ingress.hosts[0].paths[0].path=/,ingress.hosts[0].paths[0].pathType=ImplementationSpecific
 ```
 
 ## Running in Production
 
-The app is running in "Production" using the CI build in GitHub, and the Helm chart to deploy to a Kubernetes cluster.  The "production" app can be found at `https://gta.ryanackley.com/`.  It is deployed in a High Availability configuration, with SSL, and behind a CDN with DDoS protection.  These features address some of the concerns around preformance, security, and reliability in the requirements.  It can be used simlarly to the local version, like so.
+The app is running in "Production" using the CI build in GitHub, and the Helm chart to deploy to a Kubernetes cluster.  The "production" app can be found at `https://e2esp.ryanackley.com/`.  It is deployed in a High Availability configuration, with SSL, and behind a CDN with DDoS protection.  These features address some of the concerns around preformance, security, and reliability in the requirements.  It can be used simlarly to the local version, like so.
 
 ```
-curl https://gta.ryanackley.com/monthly_view_count/<article name>/<year NNNN>/<month NN>
+curl https://e2esp.ryanackley.com/monthly_view_count/<article name>/<year NNNN>/<month NN>
 ```
 
 ## Swagger API Documentation
@@ -163,7 +156,7 @@ The API is documented with Swagger.  To view the Swagger API documentation, conn
 
 Example for dev: [http://127.0.0.1:5000/apidocs/](http://127.0.0.1:5000/apidocs/)
 
-Production: [https://gta.ryanackley.com/apidocs/](https://gta.ryanackley.com/apidocs/)
+Production: [https://e2esp.ryanackley.com/apidocs/](https://e2esp.ryanackley.com/apidocs/)
 
 ## API tests with pytest
 

@@ -32,7 +32,7 @@ jobs:
         echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
 
     - name: Build Docker Image
-      run: docker build -t raackley/gt-assignment:$DOCKER_TAG .
+      run: docker build -t raackley/e2esp:$DOCKER_TAG .
 
     - name: Push Docker Image
-      run: docker push raackley/gt-assignment:$DOCKER_TAG
+      run: docker push raackley/e2esp:$DOCKER_TAG

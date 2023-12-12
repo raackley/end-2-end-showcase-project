@@ -48,7 +48,7 @@ def query_wikipedia_api(article, query_start_date, query_end_date):
     full_url = base_url + api_query + static_options + user_options
 
     # must set a user agent - https://meta.wikimedia.org/wiki/User-Agent_policy
-    headers = {'User-Agent': 'GTAssignment/1.0'}
+    headers = {'User-Agent': 'E2ESP/1.0'}
 
     # sending get request and saving the response as response object
     r = requests.get(full_url, headers=headers)

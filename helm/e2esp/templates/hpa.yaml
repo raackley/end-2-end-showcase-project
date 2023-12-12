@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "grow-therapy-assignment.fullname" . }}
+  name: {{ include "e2esp.fullname" . }}
   labels:
-    {{- include "grow-therapy-assignment.labels" . | nindent 4 }}
+    {{- include "e2esp.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "grow-therapy-assignment.fullname" . }}
+    name: {{ include "e2esp.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

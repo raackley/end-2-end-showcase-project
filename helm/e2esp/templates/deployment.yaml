@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "grow-therapy-assignment.fullname" . }}
+  name: {{ include "e2esp.fullname" . }}
   labels:
-    {{- include "grow-therapy-assignment.labels" . | nindent 4 }}
+    {{- include "e2esp.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "grow-therapy-assignment.selectorLabels" . | nindent 6 }}
+      {{- include "e2esp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "grow-therapy-assignment.labels" . | nindent 8 }}
+        {{- include "e2esp.labels" . | nindent 8 }}
 	{{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "grow-therapy-assignment.serviceAccountName" . }}
+      serviceAccountName: {{ include "e2esp.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
