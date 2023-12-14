@@ -34,4 +34,4 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker buildx create --use
-        docker buildx build --platform linux/amd64,linux/arm64 --push -t raackley/e2esp:$DOCKER_TAG -f docker/Dockerfile .
+        docker buildx build --platform linux/amd64,linux/arm64 --push -t raackley/e2esp:$DOCKER_TAG .
