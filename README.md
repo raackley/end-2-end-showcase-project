@@ -112,7 +112,7 @@ curl http://127.0.0.1:8000/monthly_view_count/<article name>/<year NNNN>/<month 
 
 ### Build from CI
 
-This repo builds an image for each Pull Request, and it also builds an image for each merge to the `master` branch.  Each of these images are pushed to `raackley/e2esp` on [Docker Hub](https://hub.docker.com/repository/docker/raackley/e2esp).  Each `master` branch will update the `latest` tag, and each Pull Request will update the tag named `pr-<pr number>` where "pr-number" is your Pull Request number.
+This repo builds an image for each Pull Request, and it also builds an image for each merge to the `master` branch.  Each of these images are pushed to `raackley/e2esp` on [Docker Hub](https://hub.docker.com/repository/docker/raackley/e2esp).  Each `master` branch will update the `latest` tag, and each Pull Request will update the tag named `pr-<pr number>` where "pr-number" is your Pull Request number.  Additionally, each image is built for both `amd64` and `arm64` CPU architectures for use on a variety of systems.
 
 For example, if your Pull Request number is `3`, then you can run the latest build of your branch like so.
 
