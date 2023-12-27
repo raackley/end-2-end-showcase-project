@@ -90,7 +90,7 @@ curl http://127.0.0.1:8000/monthly_view_count/<article name>/<year NNNN>/<month 
 
 ### Build local
 
-The project includes a Dockerfile to build an image and then to run a container with Docker, meeting the containerization requirement.  The Dockerfile copies the minimum amount of files to the image to be able to function.  For example, the tests, Helm, Readme and other files that would be unnecessary to include in the image are not included, just the source files and the requirements file are copied.  The base image is also using an appropriately slimmed image for the purpose, which is the official `python` image with the up to date and automatically patched `3.12-alpine` tag.  The "alpine" tag results in a significant;y smaller image.  This addresses some Docker best practices, as well as some performance and security concerns as well.
+The project includes a Dockerfile to build an image and then to run a container with Docker, meeting the containerization requirement.  The Dockerfile copies the minimum amount of files to the image to be able to function.  For example, the tests, Helm, Readme and other files that would be unnecessary to include in the image are not included, just the source files and the requirements file are copied.  The base image is also using an appropriately slimmed image for the purpose, which is the official `python` image with the up to date and automatically patched `3.12-alpine` tag.  The "alpine" tag results in a significantly smaller image.  This addresses some Docker best practices, as well as some performance and security concerns as well.
 
 To build and run a Docker image locally, run the following from the root repo directory.
 
